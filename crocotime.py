@@ -16,7 +16,7 @@ import os
 
 # Чтение списка людей из файла
 try:
-    with open('/home/stas/Документы/sotrudniki.txt', 'r', encoding='utf-8') as file:
+    with open('корневой_путь_к_файлу_с_вашими_сотрудниками/sotrudniki.txt', 'r', encoding='utf-8') as file:
         people_list = [line.strip() for line in file if line.strip()]
         if not people_list:
             raise ValueError("Список сотрудников пуст.")
@@ -28,11 +28,11 @@ except ValueError as e:
     print(e)
     people_list = []
 
-local_folder_path = '/home/stas/Документы/crocotime/'
+local_folder_path = 'корневой_путь_куда_сохраняются_файлы_об_отчетности'
 remote_folder_path = 'gdrive:/1no3RzytJ_H_YPr4IbN7fCS1UQlytmss-'
 
 # Указываем папку для скачивания файлов
-download_directory = "/home/stas/Документы/crocotime"
+download_directory = "корневой_путь_для_загрузки"
 prefs = {
     "download.default_directory": download_directory,  # Путь к папке для загрузки
     "download.prompt_for_download": False,  # Отключаем диалог "Сохранить как"
@@ -44,7 +44,7 @@ prefs = {
 chrome_options = Options()
 chrome_options.add_experimental_option("prefs", prefs)
 chrome_options.add_argument("--start-maximized")  # Открыть браузер в полноэкранном режиме
-#chrome_options.add_argument("--headless")  # Запускает браузер в фоновом режиме (без интерфейса)
+chrome_options.add_argument("--headless")  # Запускает браузер в фоновом режиме (без интерфейса)
 
 # Инициализация драйвера с настроенными параметрами после ввода данных
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
